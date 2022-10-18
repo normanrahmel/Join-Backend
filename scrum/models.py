@@ -1,7 +1,6 @@
+from email.policy import default
 from django.db import models
 from django.conf import settings
-
-# Create your models here.
 
 
 class Priority(models.Model):
@@ -31,11 +30,7 @@ class Task(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
     description = models.TextField()
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     status = models.ForeignKey(
-        Status,
-        on_delete=models.CASCADE,
-        null=True,
-    )
+        Status, on_delete=models.CASCADE, null=True, blank=True)
